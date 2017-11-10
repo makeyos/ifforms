@@ -105,10 +105,10 @@ $(document).ready(function () {
         onSuggestionsRetrieved: function (sugg) {
             var sugg_box = $("div").find("#serchtab").find("#searchsuggcount");
 
-            if (sugg.length == 10) {
+            if (sugg.length === 10) {
                 sugg_box.removeClass("danger").addClass("success");
                 sugg_box.html("+" + sugg.length + " found");
-            } else if (sugg.length > 0 && sugg.length != 10) {
+            } else if (sugg.length > 0 && sugg.length !== 10) {
                 sugg_box.removeClass("danger").addClass("success");
                 sugg_box.html(sugg.length + " found");
             } else {
@@ -212,8 +212,8 @@ $(document).ready(function () {
 
         // console.log(this.id + ": " + this.value);
 
-        if (this.id == "option_months") sel_month = this.value;
-        if (this.id == "option_years") sel_year = this.value;
+        if (this.id === "option_months") sel_month = this.value;
+        if (this.id === "option_years") sel_year = this.value;
 
         existing_tabs = $('div.panel.panel-default').length;
 
@@ -228,7 +228,7 @@ $(document).ready(function () {
         console.log(len_mnt);*/
 
 
-        if (sel_month != "" && sel_year != "") {
+        if (sel_month !== "" && sel_year !== "") {
             if (len_mnt <= 35) {
                 console.log("checked but les then 3 years! " + len_mnt);
                 $("#collapseOne").collapse('toggle');
@@ -288,7 +288,7 @@ $(document).ready(function () {
             controlForm.find('.phone:last .input-group-addon')
                 .removeClass("success").removeClass("danger")
                 .html('<span class="glyphicon glyphicon-asterisk"></span>');
-            if (phone_fields == 2) {
+            if (phone_fields === 2) {
                 controlForm.find(".btn.btn-success.btn-add:first")
                     .prop('disabled', true)
                     .html('<span class="glyphicon glyphicon-ban-circle"></span>');
@@ -362,7 +362,7 @@ $(document).ready(function () {
 
         switch (ver_type) {
             case "text-only":
-                if (inp_txt != "") {
+                if (inp_txt !== "") {
                     status = "ok"
                 }
                 ;
@@ -381,8 +381,8 @@ $(document).ready(function () {
                     if (result) {
                         status = "ok"
                     }
-                    if ($("#email2").val() != "") {
-                        if ($("#email2").val() == inp_txt) {
+                    if ($("#email2").val() !== "") {
+                        if ($("#email2").val() === inp_txt) {
                             mark($("#email2"), "ok");
                         } else {
                             mark($("#email2"), "fail");
@@ -392,7 +392,7 @@ $(document).ready(function () {
                 ;
                 break;
             case "email2":
-                if ($("#email1").val() == $("#email2").val()) {
+                if ($("#email1").val() === $("#email2").val()) {
                     status = "ok";
                 } else {
                     status = "fail";
@@ -402,7 +402,7 @@ $(document).ready(function () {
                 if (inp_txt) {
                     var maintainplus = '';
                     //console.log(inp_txt.charAt(0));
-                    if (inp_txt.charAt(0) == '+') {
+                    if (inp_txt.charAt(0) === '+') {
                         maintainplus = '+';
                     }
                     var curphonevar = inp_txt.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, '');
@@ -436,7 +436,7 @@ $(document).ready(function () {
                 //this.value = inp_txt;
 
 
-                if (!e.ctrlKey && !e.metaKey && (e.keyCode == 32 || e.keyCode > 46))
+                if (!e.ctrlKey && !e.metaKey && (e.keyCode === 32 || e.keyCode > 46))
                     doFormat(e.target)
 
                 const regex = /\b(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[12])[/](19[0-9]{2}|20[0-9]{2})/g;
@@ -451,12 +451,12 @@ $(document).ready(function () {
         }
         ;
 
-        if (ver_req == 0 && !status) {
+        if (ver_req === 0 && !status) {
             status = "option";
         }
         ;
 
-        if (ver_type != "none") {
+        if (ver_type !== "none") {
             mark(this, status);
         }
         ;
