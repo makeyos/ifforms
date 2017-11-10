@@ -204,183 +204,180 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a id="collapse_label_1" role="button" data-toggle="collapse"
-                                       data-parent="#accordion" href="#collapseOne" aria-expanded="true"
-                                       aria-controls="collapseOne">
-                                        Please enter your current address:
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Your current address
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingOne">
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <!-- first collaping tab -->
-                                    <div class="collapse" id="collapseExample">
+
+                                    <div class="collapse" id="collapseExample"> <!-- hidden info -->
                                         <div class="well">
                                             This is extra message!
                                         </div>
-                                    </div>
+                                    </div><!-- hidden info end -->
 
+                                    <div>
 
-                                    <ul class="nav nav-pills nav-justified first_address_tabs" role="tablist">
-                                        <li role="presentation" class="active" id="nav_searchtab"><a href="#searchtab"
-                                                                                                     data-toggle="pill">Search
-                                            for address</a></li>
-                                        <li role="presentation" id="nav_manualtab"><a href="#manualtab"
-                                                                                      data-toggle="pill">Enter
-                                            manually</a></li>
-                                    </ul>
-                                    <br/>
-                                    <div class="tab-content">
-                                        <div class="row tab-pane fade in active" id="searchtab">
-                                            <!-- searchtab content -->
-
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Search address</h3>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="form-group" id="search_input1">
-                                                        <label for="validate-number">Search for post code, address
-                                                            or a
-                                                            building name</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                   name="adressserch"
-                                                                   id="input" placeholder="Type your address"
-                                                                   data-ver="none">
-                                                            <span class="input-group-addon" id="searchsuggcount">searching...</span>
-                                                        </div>
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                                        </ul>
+                                        <br />
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <div class="panel panel-default"><!-- searching tab -->
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">Search address</h3>
                                                     </div>
-                                                    <div class="form-group" id="address_field1">
-                                                        <label for="validate-length">Your Address:</label>
-                                                        <div class="input-group" data-validate="length">
+                                                    <div class="panel-body">
+                                                        <div class="form-group" id="search_input1">
+                                                            <label for="validate-number">Search for post code, address
+                                                                or a
+                                                                building name</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control"
+                                                                       name="adressserch"
+                                                                       id="input" placeholder="Type your address"
+                                                                       data-ver="none">
+                                                                <span class="input-group-addon" id="searchsuggcount">searching...</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="address_field1">
+                                                            <label for="address_text1">Your Address:</label>
+                                                            <div class="input-group" data-validate="length">
                                                         <span class="input-group-addon success"><span
                                                                 class="glyphicon glyphicon-ok"></span></span>
-                                                            <textarea rows="5" class="form-control"
-                                                                      name="validate-length" id="address_text1"
-                                                                      readonly>Regton Ltd.&#10;82 Cliveland Street&#10;BIRMINGHAM&#10;West Midlands&#10;B19 3SN</textarea>
-                                                            <span class="input-group-addon"><button
-                                                                    class="btn btn-danger" type="button"
-                                                                    id="remove_address1">
+                                                                <textarea rows="5" class="form-control"
+                                                                          name="validate-length" id="address_text1"
+                                                                          readonly>Regton Ltd.&#10;82 Cliveland Street&#10;BIRMINGHAM&#10;West Midlands&#10;B19 3SN</textarea>
+                                                                <span class="input-group-addon"><button
+                                                                        class="btn btn-danger" type="button"
+                                                                        id="remove_address1">
                                                                 <span class="glyphicon glyphicon-remove"></span></button></span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <div class="panel panel-default"><!-- manual tab -->
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">Please enter your address</h3>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="form-group">
+                                                            <label for="validate-number">First line of address</label>
+                                                            <div class="input-group" data-validate="number">
+                                                                <span class="input-group-addon"><span
+                                                                        class="glyphicon glyphicon-asterisk"></span></span>
+                                                                <input type="text" class="form-control"
+                                                                       name="validate-number" id="first_line"
+                                                                       placeholder="Validate Number"
+                                                                       data-ver="text-only"
+                                                                       data-req="1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="validate-number">Second line of address</label>
+                                                            <div class="input-group" data-validate="number">
+                                                                <span class="input-group-addon"><span
+                                                                        class="glyphicon glyphicon-asterisk"></span></span>
+                                                                <input type="text" class="form-control"
+                                                                       name="validate-number" id="second_line"
+                                                                       placeholder="Validate Number"
+                                                                       data-ver="text-only"
+                                                                       data-req="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="validate-number">Third line of address</label>
+                                                            <div class="input-group" data-validate="number">
+                                                                <span class="input-group-addon"><span
+                                                                        class="glyphicon glyphicon-asterisk"></span></span>
+                                                                <input type="text" class="form-control"
+                                                                       name="validate-number" id="third_line"
+                                                                       placeholder="Validate Number"
+                                                                       data-ver="text-only"
+                                                                       data-req="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="validate-number">Your City</label>
+                                                            <div class="input-group" data-validate="number">
+                                                                <span class="input-group-addon"><span
+                                                                        class="glyphicon glyphicon-asterisk"></span></span>
+                                                                <input type="text" class="form-control"
+                                                                       name="validate-number" id="post_town"
+                                                                       placeholder="Validate Number"
+                                                                       data-ver="text-only"
+                                                                       data-req="1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="validate-number">County</label>
+                                                                    <div class="input-group" data-validate="number">
+                                                                        <span class="input-group-addon"><span
+                                                                                class="glyphicon glyphicon-asterisk"></span></span>
+                                                                        <input type="text" class="form-control"
+                                                                               name="validate-number" id="post_town"
+                                                                               placeholder="Validate Number"
+                                                                               data-ver="text-only" data-req="1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="validate-number">Your postcode</label>
+                                                                    <div class="input-group" data-validate="number">
+                                                                        <span class="input-group-addon"><span
+                                                                                class="glyphicon glyphicon-asterisk"></span></span>
+                                                                        <input type="text" class="form-control"
+                                                                               name="validate-number" id="postcode"
+                                                                               placeholder="Validate Number"
+                                                                               data-ver="text-only" data-req="1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row tab-pane fade" id="manualtab">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Please enter your address manually</h3>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <label for="validate-number">First line of address</label>
-                                                        <div class="input-group" data-validate="number">
-                                                                <span class="input-group-addon"><span
-                                                                        class="glyphicon glyphicon-asterisk"></span></span>
-                                                            <input type="text" class="form-control"
-                                                                   name="validate-number" id="first_line"
-                                                                   placeholder="Validate Number"
-                                                                   data-ver="text-only"
-                                                                   data-req="1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="validate-number">Second line of address</label>
-                                                        <div class="input-group" data-validate="number">
-                                                                <span class="input-group-addon"><span
-                                                                        class="glyphicon glyphicon-asterisk"></span></span>
-                                                            <input type="text" class="form-control"
-                                                                   name="validate-number" id="second_line"
-                                                                   placeholder="Validate Number"
-                                                                   data-ver="text-only"
-                                                                   data-req="0">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="validate-number">Third line of address</label>
-                                                        <div class="input-group" data-validate="number">
-                                                                <span class="input-group-addon"><span
-                                                                        class="glyphicon glyphicon-asterisk"></span></span>
-                                                            <input type="text" class="form-control"
-                                                                   name="validate-number" id="third_line"
-                                                                   placeholder="Validate Number"
-                                                                   data-ver="text-only"
-                                                                   data-req="0">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="validate-number">Your City</label>
-                                                        <div class="input-group" data-validate="number">
-                                                                <span class="input-group-addon"><span
-                                                                        class="glyphicon glyphicon-asterisk"></span></span>
-                                                            <input type="text" class="form-control"
-                                                                   name="validate-number" id="post_town"
-                                                                   placeholder="Validate Number"
-                                                                   data-ver="text-only"
-                                                                   data-req="1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="validate-number">County</label>
-                                                                <div class="input-group" data-validate="number">
-                                                                        <span class="input-group-addon"><span
-                                                                                class="glyphicon glyphicon-asterisk"></span></span>
-                                                                    <input type="text" class="form-control"
-                                                                           name="validate-number" id="post_town"
-                                                                           placeholder="Validate Number"
-                                                                           data-ver="text-only" data-req="1">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="validate-number">Your postcode</label>
-                                                                <div class="input-group" data-validate="number">
-                                                                        <span class="input-group-addon"><span
-                                                                                class="glyphicon glyphicon-asterisk"></span></span>
-                                                                    <input type="text" class="form-control"
-                                                                           name="validate-number" id="postcode"
-                                                                           placeholder="Validate Number"
-                                                                           data-ver="text-only" data-req="1">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- manualtab -->
+
+                                    </div>
+                                    <br>
 
 
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">When did you moved in?</h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="row">
+                                    <div class="panel panel-default"><!-- move in -->
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">When you did moved in ?</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
 
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="validate-select">Validate Select</label>
-                                                            <div class="input-group">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="option_months">Month</label>
+                                                        <div class="input-group">
 
                                                             <span class="input-group-addon"><span
                                                                     class="glyphicon glyphicon-asterisk"></span></span>
-                                                                <select class="form-control" name="validate-select"
-                                                                        id="option_months" number="1">
-                                                                    <option value="">Select a month</option>
-                                                                </select>
-                                                            </div><!-- /input-group -->
-                                                        </div><!--/.form-group -->
-                                                    </div><!-- /.col-lg-6 -->
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="validate-select">Validate Select</label>
+                                                            <select class="form-control" name="validate-select"
+                                                                    id="option_months" number="1">
+                                                                <option value="">Select a month</option>
+                                                            </select>
+                                                        </div><!-- /input-group -->
+                                                    </div><!--/.form-group -->
+                                                </div><!-- /.col-lg-6 -->
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="option_years">Year</label>
                                                             <div class="input-group">
                                                             <span class="input-group-addon"><span
                                                                     class="glyphicon glyphicon-asterisk"></span></span>
@@ -389,15 +386,15 @@
                                                                     <option value="">Select an year</option>
                                                                 </select>
                                                             </div><!-- /input-group -->
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-lg-6 -->
-                                                </div><!-- /.row -->
-                                            </div>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-lg-6 -->
+                                            </div><!-- /.row -->
                                         </div>
-                                    </div><!--/ .tab-content -->
-                                </div> <!--/ .row -->
+                                    </div><!-- move in end -->
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- first collaping tab -->
