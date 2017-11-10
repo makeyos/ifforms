@@ -1,24 +1,24 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var phone_fields = 1,
         temp_var = "",
         d = new Date(),
         start_month = d.getMonth(),
         start_year = d.getFullYear(),
-        sel_month, sel_year = "", result ="",
+        sel_month, sel_year = "", result = "",
         monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
-    ];
+        ];
 
-    for (var i = start_year; i>=1900; i--){
+    for (var j = start_year; j >= 1900; j--) {
         var opt = document.createElement('option');
-        opt.value = i;
-        opt.innerHTML = i;
+        opt.value = j;
+        opt.innerHTML = j;
         document.getElementById("option_years").appendChild(opt);
     }
 
-    for (var i =0; i<=11; i++){
+    for (var i = 0; i <= 11; i++) {
         var opt = document.createElement('option');
-        opt.value = i+1;
+        opt.value = i + 1;
         opt.innerHTML = monthNames[i];
         document.getElementById("option_months").appendChild(opt);
     }
@@ -54,15 +54,42 @@ $(document).ready(function() {
             // call function to list address
             var addressToPrint = "";
             var lines = 0;
-            if (data.organisation_name) { addressToPrint = addressToPrint + data.organisation_name + "\n"; lines++; };
-            if (data.building_name) { addressToPrint = addressToPrint + data.building_name + "\n"; lines++; };
-            if (data.sub_building_name) { addressToPrint = addressToPrint + data.sub_building_name + "\n"; lines++; };
-            if (data.line_1 && (data.line_1 != data.organisation_name)) { addressToPrint = addressToPrint + data.line_1 + "\n"; lines++; };
-            if (data.line_2) { addressToPrint = addressToPrint + data.line_2 + "\n"; lines++; };
-            if (data.line_3) { addressToPrint = addressToPrint + data.line_3 + "\n"; lines++; };
-            if (data.post_town) { addressToPrint = addressToPrint + data.post_town + "\n"; lines++; };
-            if (data.county) { addressToPrint = addressToPrint + data.county + "\n"; lines++; };
-            if (data.postcode) { addressToPrint = addressToPrint + data.postcode + "\n"; lines++; };
+            if (data.organisation_name) {
+                addressToPrint = addressToPrint + data.organisation_name + "\n";
+                lines++;
+            }
+            if (data.building_name) {
+                addressToPrint = addressToPrint + data.building_name + "\n";
+                lines++;
+            }
+            if (data.sub_building_name) {
+                addressToPrint = addressToPrint + data.sub_building_name + "\n";
+                lines++;
+            }
+            if (data.line_1 && (data.line_1 !== data.organisation_name)) {
+                addressToPrint = addressToPrint + data.line_1 + "\n";
+                lines++;
+            }
+            if (data.line_2) {
+                addressToPrint = addressToPrint + data.line_2 + "\n";
+                lines++;
+            }
+            if (data.line_3) {
+                addressToPrint = addressToPrint + data.line_3 + "\n";
+                lines++;
+            }
+            if (data.post_town) {
+                addressToPrint = addressToPrint + data.post_town + "\n";
+                lines++;
+            }
+            if (data.county) {
+                addressToPrint = addressToPrint + data.county + "\n";
+                lines++;
+            }
+            if (data.postcode) {
+                addressToPrint = addressToPrint + data.postcode + "\n";
+                lines++;
+            }
 
             $("div").find("#serchtab").find("#address_text1")
                 .attr("rows", lines)
@@ -87,7 +114,8 @@ $(document).ready(function() {
             } else {
                 sugg_box.removeClass("success").addClass("danger");
                 sugg_box.html("not found");
-            };
+            }
+
 
             console.log("toggling suggerstions: " + sugg.length);
             //$("div").find("#serchtab").find("#address_text1").html(sugg.length + " \n " +"test");
@@ -112,8 +140,7 @@ $(document).ready(function() {
 
     allWells.hide();
 
-    navListItems.click(function(e)
-    {
+    navListItems.click(function (e) {
         e.preventDefault();
         var $target = $($(this).attr('href')),
             $item = $(this).closest('li');
@@ -129,24 +156,24 @@ $(document).ready(function() {
     $('ul.setup-panel li.active a').trigger('click');
 
     // DEMO ONLY //
-    $('#activate-step-1').on('click', function(e) {
+    $('#activate-step-1').on('click', function (e) {
         $("#info").text($(this).attr('id'));
         $('ul.setup-panel li a[href="#step-1"]').trigger('click');
     })
 
-    $('#activate-step-2').on('click', function(e) {
+    $('#activate-step-2').on('click', function (e) {
         $("#info").text($(this).attr('id'));
         $('ul.setup-panel li a[href="#step-2"]').trigger('click');
     })
-    $('#activate-step-3').on('click', function(e) {
+    $('#activate-step-3').on('click', function (e) {
         $("#info").text($(this).attr('id'));
         $('ul.setup-panel li a[href="#step-3"]').trigger('click');
     })
-    $('#activate-step-4').on('click', function(e) {
+    $('#activate-step-4').on('click', function (e) {
         $("#info").text($(this).attr('id'));
         $('ul.setup-panel li a[href="#step-4"]').trigger('click');
     })
-    $('button').on('click', function(e) {
+    $('button').on('click', function (e) {
         //console.log($(this).attr('id'));
         var target = $(this).attr('id').split(':')[1];
         var temp = target.split("-")[1] - 1;
@@ -157,8 +184,7 @@ $(document).ready(function() {
     $('ul.first_address_tabs li.active a').trigger('click');
 
 
-
-    $(document).on('click', "li.phoneChild", function(e) {
+    $(document).on('click', "li.phoneChild", function (e) {
         e.preventDefault();
         var phonet = $(this).find("a").text() + " <span class='caret'></span>";
         $(this).find("a").parent().addClass("hidden").siblings().removeClass("hidden");
@@ -168,7 +194,7 @@ $(document).ready(function() {
         //console.log($(this).find("a").text());
     });
 
-    $(document).on('click', "#remove_address1", function(e) {
+    $(document).on('click', "#remove_address1", function (e) {
 
         $("div").find("#serchtab").find("#address_text1")
             .attr("rows", 1)
@@ -178,56 +204,68 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', "#option_months, #option_years", function(e) {
-       // document.getElementById(this.id).removeChild(this.childNodes[1]);
+    $(document).on('click', "#option_months, #option_years", function (e) {
+        // document.getElementById(this.id).removeChild(this.childNodes[1]);
     });
 
-    $(document).on('change', "#option_months, #option_years", function(e) {
+    $(document).on('change', "#option_months, #option_years", function (e) {
 
-       // console.log(this.id + ": " + this.value);
+        // console.log(this.id + ": " + this.value);
 
         if (this.id == "option_months") sel_month = this.value;
         if (this.id == "option_years") sel_year = this.value;
 
+        existing_tabs = $('div.panel.panel-default').length;
+
+        console.log('objects: ' + $(this).attr('number') + '. existing: ' + existing_tabs);
+
         today = start_year * 12 + start_month;
         selected_date = sel_year * 12 + sel_month * 1;
-        result = result + (today - selected_date);
+        len_mnt = today - selected_date;
+
+        /*console.log(start_year + ' + ' + start_month + ' = ' + today);
+        console.log(sel_year + ' + ' + sel_month + ' = ' + selected_date);
+        console.log(len_mnt);*/
+
 
         if (sel_month != "" && sel_year != "") {
-            if (result <= 35) {
-            console.log("checked but les then 3 years! " + result);
-            $("#collapseOne").collapse('toggle');
-            document.getElementById("collapse_label_1").innerHTML = "Address #1 - ok";
+            if (len_mnt <= 35) {
+                console.log("checked but les then 3 years! " + len_mnt);
+                $("#collapseOne").collapse('toggle');
+                document.getElementById("collapse_label_1").innerHTML = "Address #1 - ok";
 
-            sel_year = "";
-            sel_month = "";
+                sel_year = "";
+                sel_month = "";
 
-            //creating a clone of a tab
+                //creating a clone of a tab
                 var controlForm = $('#accordion'),
                     currentEntry = $(this).parents('.panel.panel-default:first'),
                     newEntry = $(currentEntry.clone())
                         .appendTo(controlForm);
 
-                newEntry.find('#panel-heading').prop("id","headingTwo");
-                newEntry.find('#collapse_label_1').text("Address #2").prop("id","collapse_label_2").prop("href","#collapseTwo");
-               newEntry.find("#collapseOne:last").attr("id","collapseTwo").removeClass("in").collapse("toggle");
+                /*  newEntry.find('#panel-heading').prop("id","headingTwo");
+                  newEntry.find('#collapse_label_1').text("Address #2").prop("id","collapse_label_2").prop("href","#collapseTwo");
+                 newEntry.find("#collapseOne:last").attr("id","collapseTwo").removeClass("in").collapse("toggle");
+                 */
+                newEntry.find('div#headingOne').attr('id', 'headingFour').find('a').prop('href', '#collapseFour').text('Collasible #4').addClass('collapsed');
+                newEntry.find('div#collapseOne').attr('id', 'collapseFour').removeClass('in');
 
-        } else {
-            console.log("checked and ALL GOOD " + result)
+            } else {
+                console.log("checked and ALL GOOD " + len_mnt)
 
             }
         }
 
 
-       /* $("div").find("#serchtab").find("#address_text1")
-            .attr("rows", 1)
-            .html("");
-        $("div").find("#address_field1").addClass("hidden");
-        $("div").find("#search_input1").removeClass("hidden");*/
+        /* $("div").find("#serchtab").find("#address_text1")
+             .attr("rows", 1)
+             .html("");
+         $("div").find("#address_field1").addClass("hidden");
+         $("div").find("#search_input1").removeClass("hidden");*/
 
     });
 
-    $(document).on('click', ".btn-add", function(e) {
+    $(document).on('click', ".btn-add", function (e) {
 
 
         if (phone_fields <= 2) {
@@ -261,8 +299,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '.btn-remove', function(e)
-    {
+    $(document).on('click', '.btn-remove', function (e) {
         $(this).parents('.phone:first').remove();
 
         e.preventDefault();
@@ -276,33 +313,33 @@ $(document).ready(function() {
     });
     // on click controll
     // buttton click:
-    $('#radioBtn span').on('click', function() {
+    $('#radioBtn span').on('click', function () {
         var sel = $(this).data('value');  //mr
         var tog = $(this).data('toggle'); //title
-        $('#'+tog).val(sel);
+        $('#' + tog).val(sel);
         //  You can change these lines to change classes (Ex. btn-default to btn-danger)
-        $('span[data-toggle="'+tog+'"]').not('[data-value="'+sel+'"]').removeClass('active btn-primary').addClass('notActive btn-default');
-        $('span[data-toggle="'+tog+'"][data-value="'+sel+'"]').removeClass('notActive btn-default').addClass('active btn-primary');
+        $('span[data-toggle="' + tog + '"]').not('[data-value="' + sel + '"]').removeClass('active btn-primary').addClass('notActive btn-default');
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-primary');
         // button validation:
         $('span[id="title-icon1"]').addClass("success");
         $('span[id="title-icon2"]').attr('class', 'glyphicon glyphicon-ok');
 
     });
 
-    $('#multi-buton span').on('click', function() {
+    $('#multi-buton span').on('click', function () {
         var sel = $(this).data('value');  //mr
         var tog = $(this).data('toggle'); //title
 
-        $('span[data-toggle="'+tog+'"].statusb').not('[data-value="'+sel+'"]').removeClass('active btn-primary').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
-        $('span[data-toggle="'+tog+'"][data-value="'+sel+'"].statusb').removeClass('notActive btn-default').addClass('active btn-primary leading');
-        $('ul.status-type').find("#"+sel).addClass("hidden").siblings().removeClass("hidden");
+        $('span[data-toggle="' + tog + '"].statusb').not('[data-value="' + sel + '"]').removeClass('active btn-primary').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"].statusb').removeClass('notActive btn-default').addClass('active btn-primary leading');
+        $('ul.status-type').find("#" + sel).addClass("hidden").siblings().removeClass("hidden");
 
         // button validation:
         $('span[id="status-icon1"]').addClass("success");
         $('span[id="status-icon2"]').attr('class', 'glyphicon glyphicon-ok');
     });
 
-    $(document).on('click', "li.statusChild", function(e) {
+    $(document).on('click', "li.statusChild", function (e) {
         e.preventDefault();
         var status_btn_txt = $(this).find("a").text();
         $(this).find("a").parent().addClass("hidden").siblings().removeClass("hidden");
@@ -315,7 +352,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('change keydown keyup', 'input', function(e){
+    $(document).on('change keydown keyup', 'input', function (e) {
         var ver_type = this.getAttribute("ver");
         var ver_req = this.getAttribute("req");
         var inp_txt = this.value;
@@ -323,28 +360,36 @@ $(document).ready(function() {
 
         //console.log("=> " + inp_txt + " = " + ver_req + " <=> " + ver_type);
 
-        switch(ver_type) {
+        switch (ver_type) {
             case "text-only":
-                if(inp_txt != "") { status = "ok" };
+                if (inp_txt != "") {
+                    status = "ok"
+                }
+                ;
                 break;
             case "email":
-                if(inp_txt) { status = "ok" };
+                if (inp_txt) {
+                    status = "ok"
+                }
+                ;
                 break;
             case "email1":
-                if(inp_txt) {
+                if (inp_txt) {
                     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     var result = re.test(inp_txt);
 
-                    if (result) { status = "ok"
+                    if (result) {
+                        status = "ok"
                     }
                     if ($("#email2").val() != "") {
                         if ($("#email2").val() == inp_txt) {
                             mark($("#email2"), "ok");
-                        }else{
+                        } else {
                             mark($("#email2"), "fail");
                         }
                     }
-                };
+                }
+                ;
                 break;
             case "email2":
                 if ($("#email1").val() == $("#email2").val()) {
@@ -354,18 +399,21 @@ $(document).ready(function() {
                 }
                 break;
             case "phone-only":
-                if(inp_txt) {
+                if (inp_txt) {
                     var maintainplus = '';
                     //console.log(inp_txt.charAt(0));
-                    if ( inp_txt.charAt(0)=='+' )
-                    {
+                    if (inp_txt.charAt(0) == '+') {
                         maintainplus = '+';
                     }
-                    var curphonevar = inp_txt.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,'');
+                    var curphonevar = inp_txt.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, '');
                     this.value = (maintainplus + curphonevar);
                     var maintainplus = '';
-                    if (curphonevar.length >= 9) { status = "ok" };
-                };
+                    if (curphonevar.length >= 9) {
+                        status = "ok"
+                    }
+                    ;
+                }
+                ;
                 break;
             case "dob":
                 var format = "dd/mm/yyyy";
@@ -375,11 +423,10 @@ $(document).ready(function() {
                 var replace = "$1/$2/$3$4"
                     .replace(/\//g, format.match(/\W/));
 
-            function doFormat(target)
-            {
+            function doFormat(target) {
                 target.value = target.value
                     .replace(/(^|\W)(?=\d\W)/g, "$10")   // padding
-                    .replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,"")
+                    .replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, "")
                     .replace(match, replace)             // fields
                     .replace(/(\W)+/g, "$1");            // remove repeats
             }
@@ -389,39 +436,43 @@ $(document).ready(function() {
                 //this.value = inp_txt;
 
 
-                if(!e.ctrlKey && !e.metaKey && (e.keyCode == 32 || e.keyCode > 46))
+                if (!e.ctrlKey && !e.metaKey && (e.keyCode == 32 || e.keyCode > 46))
                     doFormat(e.target)
 
                 const regex = /\b(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[12])[/](19[0-9]{2}|20[0-9]{2})/g;
 
-                if (regex.test(inp_txt)) { status = "ok" };
+                if (regex.test(inp_txt)) {
+                    status = "ok"
+                }
+                ;
                 //console.log(inp_txt);
 
                 break;
-        };
+        }
+        ;
 
-        if(ver_req == 0 && !status) {
+        if (ver_req == 0 && !status) {
             status = "option";
-        };
+        }
+        ;
 
         if (ver_type != "none") {
             mark(this, status);
-        };
+        }
+        ;
         //console.log(item_id + ": " + inp_txt);
-
 
 
     });
 
 
-
     $('[data-toggle="tooltip"]').tooltip();
 
-    $("[data-toggle='tooltip']").on("mouseover", function(){
-        if($(this).hasClass("danger")){
+    $("[data-toggle='tooltip']").on("mouseover", function () {
+        if ($(this).hasClass("danger")) {
             $(".tooltip").addClass("tooltip-invalid").removeClass("tooltip-valid");
             $(this).attr("data-original-title", $(this).attr("msg_err"));
-        } else if($(this).hasClass("success")){
+        } else if ($(this).hasClass("success")) {
             $(".tooltip").addClass("tooltip-valid").removeClass("tooltip-invalid");
             $(this).attr("data-original-title", $(this).attr("msg_ok"));
         } else {
@@ -430,12 +481,10 @@ $(document).ready(function() {
     });
 
 
-
     // end of ready(functon)
 
 
-    function mark(item, status)
-    {
+    function mark(item, status) {
 
 
         var $group = $(item).closest('.input-group'),
@@ -444,9 +493,9 @@ $(document).ready(function() {
 
         console.log("going to change class for: " + $addon.attr("class"));
 
-        $( "#info3").text(status);
+        $("#info3").text(status);
 
-        switch(status) {
+        switch (status) {
             case "ok":
                 $addon.addClass('success');
                 $addon.removeClass('info');
