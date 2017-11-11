@@ -114,7 +114,7 @@ div.idpc_autocomplete > ul {
     left: 0;
     top: 30px;
     z-index: 99;
-    min-width: 140%;
+    min-width: 100%;
     box-sizing: border-box;
     list-style: none;
     padding: 0;
@@ -154,3 +154,18 @@ textarea {
     overflow: hidden;
     cursor: default !important;
 }
+
+.panel.ok {
+    border-color: #3e8f3e !important;
+}
+
+.panel.ok > .panel-heading {
+    background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%) !important;
+    color: whitesmoke !important;
+    font-weight: bold !important;
+
+}
+.panel-title > a {
+    text-decoration: none !important;
+}
+

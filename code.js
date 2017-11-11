@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var phone_fields = 1,
+        search_obj = [],
         temp_var = "",
         d = new Date(),
         start_month = d.getMonth(),
@@ -22,6 +23,15 @@ $(document).ready(function () {
         opt.innerHTML = monthNames[i];
         document.getElementById("option_months").appendChild(opt);
     }
+
+    $(document).on('change keydown keyup', '#search_input', function (e) {
+        search_obj[0] = '#textarea' + $(this).data('search-input-type') + $(this).data('id');
+        search_obj[1] = $(this)[0];
+        search_obj[2] = '#searchtab_' + $(this).data('search-input-type') + '_' + $(this).data('id');
+        console.log(search_obj[0]);
+        console.log(search_obj[1]);
+        console.log(search_obj[2]);
+    });
     /*
         Post codes - testing
     */
@@ -50,7 +60,7 @@ $(document).ready(function () {
             $("#info").html("---Please manually enter your address");
         },
         onAddressRetrieved: function (data) {
-            //console.log("test: " + JSON.stringify(data));
+            var address_raw = JSON.stringify(data);
             // call function to list address
             var addressToPrint = "";
             var lines = 0;
@@ -91,11 +101,11 @@ $(document).ready(function () {
                 lines++;
             }
 
-            $("div").find("#serchtab").find("#address_text1")
-                .attr("rows", lines)
-                .html(addressToPrint);
-            $("div").find("#address_field1").removeClass("hidden");
-            $("div").find("#search_input1").addClass("hidden");
+
+            $(search_obj[2]).find('textarea').attr("rows", lines).html(addressToPrint);
+            $(search_obj[2]).find("#address_field").removeClass("hidden");
+            $(search_obj[2]).find("#search_input_group").addClass("hidden");
+            $(search_obj[2]).find(".panel.panel-default").addClass("ok");
 
             console.log(addressToPrint);
         },
@@ -103,7 +113,7 @@ $(document).ready(function () {
             console.log("suggestions not find: " + error);
         },
         onSuggestionsRetrieved: function (sugg) {
-            var sugg_box = $("div").find("#serchtab").find("#searchsuggcount");
+            var sugg_box = $(search_obj[2]).find("#searchsuggcount");
 
             if (sugg.length === 10) {
                 sugg_box.removeClass("danger").addClass("success");
@@ -116,11 +126,13 @@ $(document).ready(function () {
                 sugg_box.html("not found");
             }
 
-
+            /*
+            console.log(JSON.stringify(event, null, 4));
             console.log("toggling suggerstions: " + sugg.length);
-            //$("div").find("#serchtab").find("#address_text1").html(sugg.length + " \n " +"test");
+            $("div").find("#serchtab").find("#address_text1").html(sugg.length + " \n " +"test");
+*/
         },
-        inputField: "#input",
+        inputField: "#search_input",
         code: "#info3",
         outputFields: {
             line_1: "#first_line",
@@ -129,8 +141,6 @@ $(document).ready(function () {
             post_town: "#post_town",
             postcode: "#postcode"
         }
-
-
     });
 
     ///////// END  //////////////
@@ -215,7 +225,7 @@ $(document).ready(function () {
         if (this.id === "option_months") sel_month = this.value;
         if (this.id === "option_years") sel_year = this.value;
 
-        existing_tabs = $('div.panel.panel-default').length;
+        existing_tabs = $('div#homeaddresspanel').length;
 
         console.log('objects: ' + $(this).attr('number') + '. existing: ' + existing_tabs);
 

@@ -201,60 +201,63 @@
                 <div class="row">
                     <!-- page sets 12 rows -->
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
+                        <div class="panel ok panel-default" id="homeaddresspanel" data-number="1" >
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_1"
+                                       aria-expanded="true" aria-controls="collapse_1">
                                         Your current address
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapse_1" class="panel-collapse collapse fade in" role="tabpanel"
+                                 aria-labelledby="heading_1">
                                 <div class="panel-body">
 
-                                    <div class="collapse" id="collapseExample"> <!-- hidden info -->
+                                    <div class="collapse" id="hiddeninfo_1"> <!-- hidden info -->
                                         <div class="well">
                                             This is extra message!
                                         </div>
                                     </div><!-- hidden info end -->
 
                                     <div>
-
-
                                         <!-- Nav tabs -->
-                                            <ul class="nav nav-pills nav-justified" role="tablist">
-                                                <li role="presentation" class="active"><a href="#searchtab" aria-controls="home" role="tab" data-toggle="tab">Address lookup</a></li>
-                                                <li role="presentation"><a href="#manualtab" aria-controls="profile" role="tab" data-toggle="tab">Manually enter </a></li>
-                                            </ul>
-                                        <br />
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li role="presentation" class="active"><a href="#searchtab_home_1"
+                                                                                      aria-controls="home" role="tab"
+                                                                                      data-toggle="tab">Address
+                                                lookup</a></li>
+                                            <li role="presentation"><a href="#manualtab_1" aria-controls="profile"
+                                                                       role="tab" data-toggle="tab">Manually enter </a>
+                                            </li>
+                                        </ul>
+                                        <br/>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="searchtab">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="searchtab_home_1">
                                                 <div class="panel panel-default"><!-- searching tab -->
                                                     <div class="panel-heading">
                                                         <h3 class="panel-title">Search address</h3>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <div class="form-group" id="search_input1">
+                                                        <div class="form-group" id="search_input_group">
                                                             <label for="validate-number">Search for post code, address
-                                                                or a
-                                                                building name</label>
+                                                                or a building name</label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control"
-                                                                       name="adressserch"
-                                                                       id="input" placeholder="Type your address"
-                                                                       data-ver="none">
+                                                                       name="adressserch" id="search_input" placeholder="Type your address"
+                                                                       data-ver="none" data-id="1" data-search-input-type="home">
                                                                 <span class="input-group-addon" id="searchsuggcount">searching...</span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" id="address_field1">
+                                                        <div class="form-group hidden" id="address_field">
                                                             <label for="address_text1">Your Address:</label>
                                                             <div class="input-group" data-validate="length">
                                                         <span class="input-group-addon success"><span
                                                                 class="glyphicon glyphicon-ok"></span></span>
-                                                                <textarea rows="5" class="form-control"
-                                                                          name="validate-length" id="address_text1"
-                                                                          readonly>Regton Ltd.&#10;82 Cliveland Street&#10;BIRMINGHAM&#10;West Midlands&#10;B19 3SN</textarea>
+                                                                <textarea rows="2" class="form-control"
+                                                                          name="validate-length" id="textarea_home_1"
+                                                                          readonly></textarea>
                                                                 <span class="input-group-addon"><button
                                                                         class="btn btn-danger" type="button"
                                                                         id="remove_address1">
@@ -264,7 +267,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="manualtab">
+                                            <div role="tabpanel" class="tab-pane fade" id="manualtab_1">
                                                 <div class="panel panel-default"><!-- manual tab -->
                                                     <div class="panel-heading">
                                                         <h3 class="panel-title">Please enter your address</h3>
@@ -379,14 +382,14 @@
                                                 <div class="col-sm-6 col-lg-6">
                                                     <div class="form-group">
                                                         <label for="option_years">Year</label>
-                                                            <div class="input-group">
+                                                        <div class="input-group">
                                                             <span class="input-group-addon"><span
                                                                     class="glyphicon glyphicon-asterisk"></span></span>
-                                                                <select class="form-control" name="validate-select"
-                                                                        id="option_years" number="1">
-                                                                    <option value="">Select an year</option>
-                                                                </select>
-                                                            </div><!-- /input-group -->
+                                                            <select class="form-control" name="validate-select"
+                                                                    id="option_years" number="1">
+                                                                <option value="">Select an year</option>
+                                                            </select>
+                                                        </div><!-- /input-group -->
                                                     </div><!-- /.form-group -->
                                                 </div><!-- /.col-md-6 col-lg-6 -->
                                             </div><!-- /.row -->
