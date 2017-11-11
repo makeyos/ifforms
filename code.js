@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var phone_fields = 1,
         search_obj = [],
-        temp_var = "",
+        search_call_obj = [],
         d = new Date(),
         start_month = d.getMonth(),
         start_year = d.getFullYear(),
@@ -25,12 +25,12 @@ $(document).ready(function () {
     }
 
     $(document).on('change keydown keyup', '#search_input', function (e) {
-        search_obj[0] = '#textarea' + $(this).data('search-input-type') + $(this).data('id');
+      /*  search_obj[0] = '#textarea' + $(this).data('search-input-type') + $(this).data('id');
         search_obj[1] = $(this)[0];
         search_obj[2] = '#searchtab_' + $(this).data('search-input-type') + '_' + $(this).data('id');
         console.log(search_obj[0]);
         console.log(search_obj[1]);
-        console.log(search_obj[2]);
+        console.log(search_obj[2]);*/
     });
     /*
         Post codes - testing
@@ -101,11 +101,21 @@ $(document).ready(function () {
                 lines++;
             }
 
+            /*console.log(JSON.stringify(this, null, 4));
 
-            $(search_obj[2]).find('textarea').attr("rows", lines).html(addressToPrint);
-            $(search_obj[2]).find("#address_field").removeClass("hidden");
-            $(search_obj[2]).find("#search_input_group").addClass("hidden");
-            $(search_obj[2]).find(".panel.panel-default").addClass("ok");
+            search_this = this["input"];
+            call_obj_keys = Object.keys(search_this);
+            search_call_obj = this["input"][call_obj_keys[0]];*/
+
+
+            search_tab = '#searchtab_' + search_call_obj["searchInputType"] + '_' + search_call_obj["id"];
+
+            console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
+
+            $(search_tab).find('textarea').attr("rows", lines).html(addressToPrint);
+            $(search_tab).find("#address_field").removeClass("hidden");
+            $(search_tab).find("#search_input_group").addClass("hidden");
+            $(search_tab).find(".panel.panel-default").addClass("ok");
 
             console.log(addressToPrint);
         },
@@ -126,14 +136,19 @@ $(document).ready(function () {
                 sugg_box.html("not found");
             }
 
-            /*
-            console.log(JSON.stringify(event, null, 4));
-            console.log("toggling suggerstions: " + sugg.length);
+            search_this = this["interface"]["input"];
+            call_obj_keys = Object.keys(search_this);
+            search_call_obj = this["interface"]["input"][call_obj_keys[0]];
+
+
+            /*console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
+
+            console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
+            console.log("object keys: " + call_obj_keys[0]);
             $("div").find("#serchtab").find("#address_text1").html(sugg.length + " \n " +"test");
 */
         },
         inputField: "#search_input",
-        code: "#info3",
         outputFields: {
             line_1: "#first_line",
             line_2: "#second_line",
@@ -225,9 +240,15 @@ $(document).ready(function () {
         if (this.id === "option_months") sel_month = this.value;
         if (this.id === "option_years") sel_year = this.value;
 
-        existing_tabs = $('div#homeaddresspanel').length;
+        curr_tab_nr = $(this).data('id');
+        curr_tab_type = $(this).data('type');
+        existing_tabs = $('div#' + curr_tab_type + 'addresspanel').length;
+        new_tab_nr = existing_tabs + 1;
 
-        console.log('objects: ' + $(this).attr('number') + '. existing: ' + existing_tabs);
+
+        console.log('objects: ' + $(this).data('id') + '. existing: ' + existing_tabs);
+
+
 
         today = start_year * 12 + start_month;
         selected_date = sel_year * 12 + sel_month * 1;
@@ -241,15 +262,15 @@ $(document).ready(function () {
         if (sel_month !== "" && sel_year !== "") {
             if (len_mnt <= 35) {
                 console.log("checked but les then 3 years! " + len_mnt);
-                $("#collapseOne").collapse('toggle');
-                document.getElementById("collapse_label_1").innerHTML = "Address #1 - ok";
+                $("#collapse_" + curr_tab_nr).collapse('toggle');
+                document.getElementById("collapse_" + curr_tab_nr).innerHTML = "Address #1 - ok";
 
                 sel_year = "";
                 sel_month = "";
 
                 //creating a clone of a tab
                 var controlForm = $('#accordion'),
-                    currentEntry = $(this).parents('.panel.panel-default:first'),
+                    currentEntry = $(this).parents('#' + curr_tab_type + 'addresspanel:first'),
                     newEntry = $(currentEntry.clone())
                         .appendTo(controlForm);
 
@@ -257,8 +278,8 @@ $(document).ready(function () {
                   newEntry.find('#collapse_label_1').text("Address #2").prop("id","collapse_label_2").prop("href","#collapseTwo");
                  newEntry.find("#collapseOne:last").attr("id","collapseTwo").removeClass("in").collapse("toggle");
                  */
-                newEntry.find('div#headingOne').attr('id', 'headingFour').find('a').prop('href', '#collapseFour').text('Collasible #4').addClass('collapsed');
-                newEntry.find('div#collapseOne').attr('id', 'collapseFour').removeClass('in');
+                newEntry.find('div#heading' + curr_tab_nr).attr('id', 'heading' + new_tab_nr).find('a').prop('href', '#collapseFour').text('Collasible #4').addClass('collapsed');
+                newEntry.find('div#collapse' + curr_tab_nr).attr('id', 'collapse' + new_tab_nr).removeClass('in');
 
             } else {
                 console.log("checked and ALL GOOD " + len_mnt)
@@ -501,7 +522,7 @@ $(document).ready(function () {
             $addon = $group.find('.input-group-addon'),
             $icon = $addon.find('span');
 
-        console.log("going to change class for: " + $addon.attr("class"));
+        //console.log("going to change class for: " + $addon.attr("class"));
 
         $("#info3").text(status);
 
