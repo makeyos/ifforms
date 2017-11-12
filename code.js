@@ -1,3 +1,5 @@
+call_back_search_input = "#search_input_1";
+
 $(document).ready(function () {
     var phone_fields = 1,
         search_obj = [],
@@ -52,8 +54,17 @@ $(document).ready(function () {
 
     }); */
 
+    var autocomplete_input = call_back_search_input;
 
-    const controller = new IdealPostcodes.Autocomplete.Controller({
+    var allies_complete = new AlliesComplete(autocomplete_input, {
+        apiKey: "PCW45-12345-12345-1234X",
+        endpoint: "address",
+        maxItems: 10
+    });
+
+
+
+   /* controller = new IdealPostcodes.Autocomplete.Controller({
         api_key: "iddqd",
         checkKey: true,
         onLoaded: function () {
@@ -104,7 +115,7 @@ $(document).ready(function () {
                 lines++;
             }
 
-          /*  console.log(JSON.stringify(this, null, 4));
+          /!*  console.log(JSON.stringify(this, null, 4));
 
             search_this = this["input"];
             call_obj_keys = Object.keys(search_this);
@@ -114,7 +125,7 @@ $(document).ready(function () {
             search_tab = '#searchtab_' + search_call_obj["searchInputType"] + '_' + search_call_obj["id"];
 
             console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
-*/
+*!/
             $(search_obj['textaara']).attr("rows", lines).html(addressToPrint);
             $(search_obj['searchtab']).find("#address_field_" + search_obj['id']).removeClass("hidden");
             $(search_obj['searchtab']).find("#search_input_group_" + search_obj['id']).addClass("hidden");
@@ -139,25 +150,27 @@ $(document).ready(function () {
                 sugg_box.html("not found");
             }
 
-            //console.log('this: ' + JSON.stringify(this, null, 5));
+            console.log('this: ' + JSON.stringify($(this), null, 5));
 
-            /*search_this = this["interface"]["input"];
+            //search_this = this["interface"]["input"];
 
-            console.log(search_tab);
+            // console.log('The Call Is From: ' + call_back_search_input);
 
-            call_obj_keys = Object.keys(search_this);
+
+
+            /!*call_obj_keys = Object.keys(search_this);
             search_call_obj = this["interface"]["input"][call_obj_keys[0]];
 
 
             console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
 
           console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
-            console.log("object keys: " + call_obj_keys[0]); */
+            console.log("object keys: " + call_obj_keys[0]); *!/
 
            // $(search_obj[0]).find("#address_text1").html(sugg.length + " \n " +"test");
 
         },
-        inputField: "#search_input",
+        inputField: call_back_search_input,
         outputFields: {
             line_1: "#first_line",
             line_2: "#second_line",
@@ -165,6 +178,24 @@ $(document).ready(function () {
             post_town: "#post_town",
             postcode: "#postcode"
         }
+    });*/
+
+
+
+
+    $('div#homeaddresspanel').on('show.bs.collapse', function () {
+       // console.log(JSON.stringify(this, null, 4));
+        /*call_back_search_input = "#search_input_" + $(this).data('id');
+        console.log('hidden ' + $(this).data('id'));
+        console.log(call_back_search_input);*/
+    })
+
+    $(document).on('click', "button#test_button1", function (e) {
+        call_back_search_input = "#search_input_2";
+       console.log('been clicked!' + call_back_search_input);
+
+       allies_complete.updater;
+        //console.log($(this).find("a").text());
     });
 
     ///////// END  //////////////
