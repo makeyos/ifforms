@@ -25,12 +25,15 @@ $(document).ready(function () {
     }
 
     $(document).on('change keydown keyup', '#search_input', function (e) {
-      /*  search_obj[0] = '#textarea' + $(this).data('search-input-type') + $(this).data('id');
-        search_obj[1] = $(this)[0];
-        search_obj[2] = '#searchtab_' + $(this).data('search-input-type') + '_' + $(this).data('id');
-        console.log(search_obj[0]);
-        console.log(search_obj[1]);
-        console.log(search_obj[2]);*/
+        search_obj['textaara'] = '#textarea_' + $(this).data('search-input-type') + '_' + $(this).data('id');
+        search_obj['this'] = $(this);
+        search_obj['searchtab'] = '#searchtab_' + $(this).data('search-input-type') + '_' + $(this).data('id');
+        search_obj['type'] = $(this).data('search-input-type');
+        search_obj['id'] = $(this).data('id');
+       /* console.log(search_obj['id']);
+        console.log(search_obj['type']);
+        console.log(search_obj['textaara']);
+        console.log(JSON.stringify(this, null, 4));*/
     });
     /*
         Post codes - testing
@@ -60,7 +63,7 @@ $(document).ready(function () {
             $("#info").html("---Please manually enter your address");
         },
         onAddressRetrieved: function (data) {
-            var address_raw = JSON.stringify(data);
+            var address_raw = JSON.stringify(data, null, 4);
             // call function to list address
             var addressToPrint = "";
             var lines = 0;
@@ -101,29 +104,29 @@ $(document).ready(function () {
                 lines++;
             }
 
-            /*console.log(JSON.stringify(this, null, 4));
+          /*  console.log(JSON.stringify(this, null, 4));
 
             search_this = this["input"];
             call_obj_keys = Object.keys(search_this);
-            search_call_obj = this["input"][call_obj_keys[0]];*/
+            search_call_obj = this["input"][call_obj_keys[0]];*!/
 
 
             search_tab = '#searchtab_' + search_call_obj["searchInputType"] + '_' + search_call_obj["id"];
 
             console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
+*/
+            $(search_obj['textaara']).attr("rows", lines).html(addressToPrint);
+            $(search_obj['searchtab']).find("#address_field_" + search_obj['id']).removeClass("hidden");
+            $(search_obj['searchtab']).find("#search_input_group_" + search_obj['id']).addClass("hidden");
+            $(search_obj['searchtab']).find("#search_heading_" + search_obj['id']).addClass("ok");
 
-            $(search_tab).find('textarea').attr("rows", lines).html(addressToPrint);
-            $(search_tab).find("#address_field").removeClass("hidden");
-            $(search_tab).find("#search_input_group").addClass("hidden");
-            $(search_tab).find(".panel.panel-default").addClass("ok");
-
-            console.log(addressToPrint);
+            console.log(address_raw);
         },
         onSearchError: function (error) {
             console.log("suggestions not find: " + error);
         },
         onSuggestionsRetrieved: function (sugg) {
-            var sugg_box = $(search_obj[2]).find("#searchsuggcount");
+            var sugg_box = $(search_obj['searchtab']).find("#searchsuggcount");
 
             if (sugg.length === 10) {
                 sugg_box.removeClass("danger").addClass("success");
@@ -136,17 +139,23 @@ $(document).ready(function () {
                 sugg_box.html("not found");
             }
 
-            search_this = this["interface"]["input"];
+            //console.log('this: ' + JSON.stringify(this, null, 5));
+
+            /*search_this = this["interface"]["input"];
+
+            console.log(search_tab);
+
             call_obj_keys = Object.keys(search_this);
             search_call_obj = this["interface"]["input"][call_obj_keys[0]];
 
 
-            /*console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
+            console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
 
-            console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
-            console.log("object keys: " + call_obj_keys[0]);
-            $("div").find("#serchtab").find("#address_text1").html(sugg.length + " \n " +"test");
-*/
+          console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
+            console.log("object keys: " + call_obj_keys[0]); */
+
+           // $(search_obj[0]).find("#address_text1").html(sugg.length + " \n " +"test");
+
         },
         inputField: "#search_input",
         outputFields: {
@@ -221,11 +230,10 @@ $(document).ready(function () {
 
     $(document).on('click', "#remove_address1", function (e) {
 
-        $("div").find("#serchtab").find("#address_text1")
-            .attr("rows", 1)
-            .html("");
-        $("div").find("#address_field1").addClass("hidden");
-        $("div").find("#search_input1").removeClass("hidden");
+        $(search_obj['textaara']).attr("rows", 1).html('');
+        $(search_obj['searchtab']).find("#address_field_" + search_obj['id']).addClass("hidden");
+        $(search_obj['searchtab']).find("#search_input_group_" + search_obj['id']).removeClass("hidden");
+        $(search_obj['searchtab']).find("#search_heading_" + search_obj['id']).removeClass("ok");
 
     });
 
@@ -240,9 +248,8 @@ $(document).ready(function () {
         if (this.id === "option_months") sel_month = this.value;
         if (this.id === "option_years") sel_year = this.value;
 
-        curr_tab_nr = $(this).data('id');
-        curr_tab_type = $(this).data('type');
-        existing_tabs = $('div#' + curr_tab_type + 'addresspanel').length;
+
+        existing_tabs = $('div#' + search_obj['type'] + 'addresspanel').length;
         new_tab_nr = existing_tabs + 1;
 
 
@@ -262,15 +269,17 @@ $(document).ready(function () {
         if (sel_month !== "" && sel_year !== "") {
             if (len_mnt <= 35) {
                 console.log("checked but les then 3 years! " + len_mnt);
-                $("#collapse_" + curr_tab_nr).collapse('toggle');
-                document.getElementById("collapse_" + curr_tab_nr).innerHTML = "Address #1 - ok";
+                $("#collapse_" + search_obj['id']).collapse('toggle');
+
+                console.log('hellol!!!! - ' + search_obj['id']);
+                //document.getElementById("title_collapse_" + search_obj['id']).innerHTML = "Address #1 - ok";
 
                 sel_year = "";
                 sel_month = "";
 
                 //creating a clone of a tab
-                var controlForm = $('#accordion'),
-                    currentEntry = $(this).parents('#' + curr_tab_type + 'addresspanel:first'),
+                var controlForm = $('#accordion:first'),
+                    currentEntry = $('#' + search_obj['type'] + 'addresspanel:first'),
                     newEntry = $(currentEntry.clone())
                         .appendTo(controlForm);
 
@@ -278,8 +287,8 @@ $(document).ready(function () {
                   newEntry.find('#collapse_label_1').text("Address #2").prop("id","collapse_label_2").prop("href","#collapseTwo");
                  newEntry.find("#collapseOne:last").attr("id","collapseTwo").removeClass("in").collapse("toggle");
                  */
-                newEntry.find('div#heading' + curr_tab_nr).attr('id', 'heading' + new_tab_nr).find('a').prop('href', '#collapseFour').text('Collasible #4').addClass('collapsed');
-                newEntry.find('div#collapse' + curr_tab_nr).attr('id', 'collapse' + new_tab_nr).removeClass('in');
+                newEntry.find('div#heading_' + search_obj['id']).attr('id', 'heading' + new_tab_nr).find('a').prop('href', '#collapse_' + new_tab_nr).text('Collasible #' + new_tab_nr).addClass('collapsed');
+                newEntry.find('div#collapse_' + search_obj['id']).attr('id', 'collapse' + new_tab_nr).removeClass('in');
 
             } else {
                 console.log("checked and ALL GOOD " + len_mnt)

@@ -201,10 +201,10 @@
                 <div class="row">
                     <!-- page sets 12 rows -->
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel ok panel-default" id="homeaddresspanel" data-number="1" >
+                        <div class="panel panel-default" id="homeaddresspanel" data-number="1" > <!--panel to clone -->
                             <div class="panel-heading" role="tab" id="heading_1">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_1"
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" id="title_collapse_1" href="#collapse_1"
                                        aria-expanded="true" aria-controls="collapse_1">
                                         Your current address
                                     </a>
@@ -231,16 +231,16 @@
                                                                        role="tab" data-toggle="tab">Manually enter </a>
                                             </li>
                                         </ul>
-                                        <br/>
+                                        <p>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="searchtab_home_1">
-                                                <div class="panel panel-default"><!-- searching tab -->
+                                                <div class="panel panel-default" id="search_heading_1"><!-- searching tab -->
                                                     <div class="panel-heading">
                                                         <h3 class="panel-title">Search address</h3>
                                                     </div>
                                                     <div class="panel-body">
-                                                        <div class="form-group" id="search_input_group">
+                                                        <div class="form-group" id="search_input_group_1">
                                                             <label for="validate-number">Search for post code, address
                                                                 or a building name</label>
                                                             <div class="input-group">
@@ -250,7 +250,7 @@
                                                                 <span class="input-group-addon" id="searchsuggcount">searching...</span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group hidden" id="address_field">
+                                                        <div class="form-group hidden" id="address_field_1">
                                                             <label for="address_text1">Your Address:</label>
                                                             <div class="input-group" data-validate="length">
                                                         <span class="input-group-addon success"><span
@@ -355,7 +355,7 @@
                                         </div>
 
                                     </div>
-                                    <br>
+                                    <p>
 
 
                                     <div class="panel panel-default"><!-- move in -->

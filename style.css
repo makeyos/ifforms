@@ -156,11 +156,11 @@ textarea {
 }
 
 .panel.ok {
-    border-color: #3e8f3e !important;
+    border-color: #4cae4c !important;
 }
 
 .panel.ok > .panel-heading {
-    background-image: linear-gradient(to bottom,#5cb85c 0,#419641 100%) !important;
+    background-image: linear-gradient(to bottom, #47b807 0,#5cb85c 100%) !important;
     color: whitesmoke !important;
     font-weight: bold !important;
 
