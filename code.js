@@ -42,7 +42,8 @@ $(document).ready(function () {
         Post codes - testing
     */
 
-controller = new IdealPostcodes.Autocomplete.Controller({
+// noinspection JSAnnotator
+    controller = new IdealPostcodes.Autocomplete.Controller({
         api_key: "iddqd",
         checkKey: true,
         onLoaded: function () {
@@ -230,13 +231,19 @@ controller = new IdealPostcodes.Autocomplete.Controller({
             field = this.id,
             value = this.value;
 
-        var temp1 = {}
+        var temp1 = {};
             temp1[field] = value;
         var temp2 = {};
-            temp2[type] = temp1;
+            temp2[id] = temp1;
+        var temp3 = {};
+            temp3[type] = temp2;
 
 
-        leave_moniths.push({type: { id: { field: value}}});
+        //leave_moniths = temp3;
+        var temp4 = { [type] : { [id] : { [field] : value}}};
+
+
+        leave_moniths.push(temp4);
 
         console.log("==> "+ JSON.stringify(leave_moniths, null ,4));
 
