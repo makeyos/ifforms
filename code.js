@@ -2,6 +2,7 @@ call_back_search_input = "#search_input_1";
 
 $(document).ready(function () {
     var phone_fields = 1,
+        leave_moniths = [],
         search_obj = [],
         search_call_obj = [],
         d = new Date(),
@@ -41,30 +42,7 @@ $(document).ready(function () {
         Post codes - testing
     */
 
-    /*   new IdealPostcodes.Autocomplete.Controller({
-      api_key: "iddqd",
-      inputField: "#input",
-      outputFields: {
-        line_1: "#first_line",
-        line_2: "#second_line",
-        line_3: "#third_line",
-        post_town: "#post_town",
-        postcode: "#postcode"
-      }
-
-    }); */
-
-    var autocomplete_input = call_back_search_input;
-
-    var allies_complete = new AlliesComplete(autocomplete_input, {
-        apiKey: "PCW45-12345-12345-1234X",
-        endpoint: "address",
-        maxItems: 10
-    });
-
-
-
-   /* controller = new IdealPostcodes.Autocomplete.Controller({
+controller = new IdealPostcodes.Autocomplete.Controller({
         api_key: "iddqd",
         checkKey: true,
         onLoaded: function () {
@@ -115,22 +93,17 @@ $(document).ready(function () {
                 lines++;
             }
 
-          /!*  console.log(JSON.stringify(this, null, 4));
+          //  console.log(JSON.stringify(this, null, 4));
 
-            search_this = this["input"];
-            call_obj_keys = Object.keys(search_this);
-            search_call_obj = this["input"][call_obj_keys[0]];*!/
-
-
-            search_tab = '#searchtab_' + search_call_obj["searchInputType"] + '_' + search_call_obj["id"];
+            /*search_tab = '#searchtab_' + search_call_obj["searchInputType"] + '_' + search_call_obj["id"];
 
             console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
-*!/
+
             $(search_obj['textaara']).attr("rows", lines).html(addressToPrint);
             $(search_obj['searchtab']).find("#address_field_" + search_obj['id']).removeClass("hidden");
             $(search_obj['searchtab']).find("#search_input_group_" + search_obj['id']).addClass("hidden");
             $(search_obj['searchtab']).find("#search_heading_" + search_obj['id']).addClass("ok");
-
+*/
             console.log(address_raw);
         },
         onSearchError: function (error) {
@@ -151,34 +124,14 @@ $(document).ready(function () {
             }
 
             console.log('this: ' + JSON.stringify($(this), null, 5));
-
-            //search_this = this["interface"]["input"];
-
-            // console.log('The Call Is From: ' + call_back_search_input);
-
-
-
-            /!*call_obj_keys = Object.keys(search_this);
-            search_call_obj = this["interface"]["input"][call_obj_keys[0]];
-
-
             console.log("call from: " + search_call_obj["searchInputType"] + search_call_obj["id"]);
 
-          console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
-            console.log("object keys: " + call_obj_keys[0]); *!/
-
-           // $(search_obj[0]).find("#address_text1").html(sugg.length + " \n " +"test");
+            console.log(JSON.stringify(this["interface"]["input"][call_obj_keys[0]], null, 4));
+            console.log("object keys: " + call_obj_keys[0]);
 
         },
-        inputField: call_back_search_input,
-        outputFields: {
-            line_1: "#first_line",
-            line_2: "#second_line",
-            line_3: "#third_line",
-            post_town: "#post_town",
-            postcode: "#postcode"
-        }
-    });*/
+        inputField: call_back_search_input
+    });
 
 
 
@@ -194,7 +147,6 @@ $(document).ready(function () {
         call_back_search_input = "#search_input_2";
        console.log('been clicked!' + call_back_search_input);
 
-       allies_complete.updater;
         //console.log($(this).find("a").text());
     });
 
@@ -273,8 +225,20 @@ $(document).ready(function () {
     });
 
     $(document).on('change', "#option_months, #option_years", function (e) {
+        var id = $(this).data('id'),
+            type = $(this).data('type'),
+            field = this.id,
+            value = this.value;
 
-        // console.log(this.id + ": " + this.value);
+        var temp1 = {}
+            temp1[field] = value;
+        var temp2 = {};
+            temp2[type] = temp1;
+
+
+        leave_moniths.push({type: { id: { field: value}}});
+
+        console.log("==> "+ JSON.stringify(leave_moniths, null ,4));
 
         if (this.id === "option_months") sel_month = this.value;
         if (this.id === "option_years") sel_year = this.value;
@@ -326,16 +290,9 @@ $(document).ready(function () {
 
             }
         }
-
-
-        /* $("div").find("#serchtab").find("#address_text1")
-             .attr("rows", 1)
-             .html("");
-         $("div").find("#address_field1").addClass("hidden");
-         $("div").find("#search_input1").removeClass("hidden");*/
-
     });
 
+    // Add-phone buttton starts:
     $(document).on('click', ".btn-add", function (e) {
 
 
@@ -369,7 +326,6 @@ $(document).ready(function () {
             return false;
         }
     });
-
     $(document).on('click', '.btn-remove', function (e) {
         $(this).parents('.phone:first').remove();
 
@@ -382,47 +338,105 @@ $(document).ready(function () {
         }
         return false;
     });
-    // on click controll
-    // buttton click:
+    // Add-phone buttton ends:
+
+    // TITLE buttton starts:
     $('#radioBtn span').on('click', function () {
         var sel = $(this).data('value');  //mr
         var tog = $(this).data('toggle'); //title
         $('#' + tog).val(sel);
         //  You can change these lines to change classes (Ex. btn-default to btn-danger)
-        $('span[data-toggle="' + tog + '"]').not('[data-value="' + sel + '"]').removeClass('active btn-primary').addClass('notActive btn-default');
-        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-primary');
+        $('span[data-toggle="' + tog + '"]').not('[data-value="' + sel + '"]').removeClass('active btn-success').addClass('notActive btn-default');
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"]').removeClass('notActive btn-default').addClass('active btn-success');
         // button validation:
         $('span[id="title-icon1"]').addClass("success");
         $('span[id="title-icon2"]').attr('class', 'glyphicon glyphicon-ok');
 
     });
+    // TITLE buttton ends
 
-    $('#multi-buton span').on('click', function () {
+    //  STATUS Multi button Starts
+    $('#multi-buton1 span').on('click', function () {
         var sel = $(this).data('value');  //mr
         var tog = $(this).data('toggle'); //title
 
-        $('span[data-toggle="' + tog + '"].statusb').not('[data-value="' + sel + '"]').removeClass('active btn-primary').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
-        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"].statusb').removeClass('notActive btn-default').addClass('active btn-primary leading');
+        $('span[data-toggle="' + tog + '"].statusb').not('[data-value="' + sel + '"]').removeClass('active btn-success').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"].statusb').removeClass('notActive btn-default').addClass('active btn-success leading');
         $('ul.status-type').find("#" + sel).addClass("hidden").siblings().removeClass("hidden");
 
         // button validation:
         $('span[id="status-icon1"]').addClass("success");
         $('span[id="status-icon2"]').attr('class', 'glyphicon glyphicon-ok');
     });
-
     $(document).on('click', "li.statusChild", function (e) {
         e.preventDefault();
         var status_btn_txt = $(this).find("a").text();
         $(this).find("a").parent().addClass("hidden").siblings().removeClass("hidden");
         //console.log(
-        $("#multi-buton").find("span.leading").text(status_btn_txt).removeClass('notActive btn-default').addClass('active btn-primary leading').siblings().addClass("hidden");
+        $("#multi-buton1").find("span.leading").text(status_btn_txt).removeClass('notActive btn-default').addClass('active btn-success leading').siblings().addClass("hidden");
 
         // button validation:
         $('span[id="status-icon1"]').addClass("success");
         $('span[id="status-icon2"]').attr('class', 'glyphicon glyphicon-ok');
 
     });
+    //  STATUS Multi button Ends
 
+    //  dependants Multi button Starts
+    $('#multi-buton2 span').on('click', function () {
+        var sel = $(this).data('value');  //mr
+        var tog = $(this).data('toggle'); //title
+
+        $('span[data-toggle="' + tog + '"].dependants').not('[data-value="' + sel + '"]').removeClass('active btn-success').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"].dependants').removeClass('notActive btn-default').addClass('active btn-success leading');
+        $('ul.dependants-type').find("#" + sel).addClass("hidden").siblings().removeClass("hidden");
+
+        // button validation:
+        $('span[id="dependants-icon1"]').addClass("success");
+        $('span[id="dependants-icon2"]').attr('class', 'glyphicon glyphicon-ok');
+    });
+    $(document).on('click', "li.dependantsChild", function (e) {
+        e.preventDefault();
+        var dependants_btn_txt = $(this).find("a").text();
+        $(this).find("a").parent().addClass("hidden").siblings().removeClass("hidden");
+        //console.log(
+        $("#multi-buton2").find("span.leading").text(dependants_btn_txt).removeClass('notActive btn-default').addClass('active btn-success leading').siblings().addClass("hidden");
+
+        // button validation:
+        $('span[id="dependants-icon1"]').addClass("success");
+        $('span[id="dependants-icon2"]').attr('class', 'glyphicon glyphicon-ok');
+
+    });
+    //  dependants Multi button Ends
+
+  /*  $('#multi-buton2 span').on('click', function () {
+        var sel = $(this).data('value');
+        var tog = $(this).data('toggle');
+
+        $('span[data-toggle="' + tog + '"].dependants').not('[data-value="' + sel + '"]').removeClass('active btn-success').removeClass('leading').addClass('notActive btn-default').addClass("hidden");
+        $('span[data-toggle="' + tog + '"][data-value="' + sel + '"].dependants').removeClass('notActive btn-default').addClass('active btn-success leading');
+        $('ul.status-type').find("#" + sel).addClass("hidden").siblings().removeClass("hidden");
+
+        // button validation:
+        $('span[id="dependants-icon1"]').addClass("success");
+        $('span[id="dependants-icon2"]').attr('class', 'glyphicon glyphicon-ok');
+    });
+
+
+
+    $(document).on('click', "li.dependantsChild", function (e) {
+        e.preventDefault();
+        var status_btn_txt = $(this).find("a").text();
+        $(this).find("a").parent().addClass("hidden").siblings().removeClass("hidden");
+        //console.log(
+        $("#multi-buton").find("span.leading").text(status_btn_txt).removeClass('notActive btn-default').addClass('active btn-seccess leading').siblings().addClass("hidden");
+
+        // button validation:
+        $('span[id="dependants-icon1"]').addClass("success");
+        $('span[id="dependants-icon2"]').attr('class', 'glyphicon glyphicon-ok');
+
+    });
+*/
     $(document).on('change keydown keyup', 'input', function (e) {
         var ver_type = this.getAttribute("ver");
         var ver_req = this.getAttribute("req");
