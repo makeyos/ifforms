@@ -36,3 +36,25 @@ $(document).on('click', "button#add_button", function (e) {
 
 
 });
+
+var obj = {
+    'home' : {
+        '1' : {
+            'year' : '1999',
+            'month' : '9'
+        },
+        '2' : {
+            'year' : '2000',
+            'month' : '11'
+        },
+    },
+    'company' : {
+        '1' : {
+            'year' : '2020',
+            'month' : '10'
+        },
+        '2' : {
+            'month' : '12'
+        }
+    },
+};
